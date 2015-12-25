@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>GAME</title>
+		<script type="text/javascript" src="js/phaser.min.js"></script>
+		<style type="text/css">
+        body {
+            margin: 0;
+        }
+        </style>
+    </head>
+		<body>
+		  <script type="text/javascript">
+			  var game = new Phaser.Game(800,600,Phaser.AUTO,'',
+			  {
+				  preload : preload,
+				  create : create,
+				  update : update
+			  });
+			
+			  function preload(){
+				  game.load.image('sky','assets/sky.png');
+				  game.load.image('ground','assets/platform.png');
+				  game.load.image('star','assets/star.png')
+				  game.load.spritesheet('dude','assets/dude.png',32,48);
+			  }
+              
+			  function create(){
+                  
+				  game.physics.startSystem(Phaser.Physics.ARCADE);
+				  game.add.sprite(0,0,'sky');
+				  
+				  var platforms = game.add.group();
+				  platforms.enableBody = true;
+				  var ground = platforms.create(0,game.world.height-33,'ground');
+                  ground.setImmoveable = true;
+                  ground.scale.setTo(2,2);
+				 			  
+                  
+				  
+				  var ledge1 =platforms.create(0,300,'ground');
+                  ledge1.setImmovable = true;
+				  var ledge2 = platforms.create(400,100,'ground');
+                  ledge2.setImmovable = true;
+				  
+				  
+				  
+				  var player = game.add.sprite(32,game.world.height-150,'dude');
+				  game.physics.arcade.enable(player);
+				  player.body.bounce.y = 0.5;
+				  player.body.gravity.y=500;
+				  player.body.collideWorldBounds = true;
+				  player.animations.add('left',[0,1,2,3],10,true);
+				  player.animations.add('right',[5,6,7,8],10,true);
+				  
+
+				  
+			  }
+			  function update(){}
+			  
+			  
+		</script>
+	</body>
+</html>

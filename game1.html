@@ -79,15 +79,12 @@
                   }
                   
                   
-                  if(cursors.up.isDown){
-                      player.body.velocity.y = -300;
+                  if(cursors.up.isDown && player.body.touching.down){
+                      player.body.velocity.y = -550;
                   }
-              
-
-                  
+                     
 
               }
-
 
 		</script>
 	</body>
